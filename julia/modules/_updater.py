@@ -79,12 +79,6 @@ async def upstream(ups):
         repo.__del__()
         return
     except InvalidGitRepositoryError as error:
-        if conf != "now":
-            await lol.edit(
-                f"**Unfortunately, the directory {error} does not seem to be a git repository.\
-            \nBut we can fix that by force updating the bot using** `/update now`"
-            )
-            return
         repo = Repo.init()
         origin = repo.create_remote("upstream", off_repo)
         origin.fetch()
