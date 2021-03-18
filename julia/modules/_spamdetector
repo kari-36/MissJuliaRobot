@@ -19,6 +19,7 @@ from datetime import datetime
 from pymongo import MongoClient
 from julia import MONGO_DB_URI, OWNER_ID
 from telethon import events, types
+import asyncio
 
 global spamcounter
 spamcounter = 0
@@ -79,8 +80,12 @@ async def spammers(event):
             print("spammers never die")
             return
     spammers.insert_one({"id": USERSPAM[0], "time": datetime.now()})
-    await event.respond(final)
-
+    if event.is_group:
+       msg = await event.respond(final)
+       await asyncio.sleep(10)
+       await msg.delete()
+    else:
+       await event.respond(final)
 
 @tbot.on(events.NewMessage(pattern=None))
 async def spammers(event):
