@@ -70,6 +70,8 @@ def get_random_fortune(fortune_file):
 
 
 def main():    
+    usage = "Usage: %prog [OPTIONS] [fortune_file]"
+    arg_parser = OptionParser(usage=usage)
     options, args = arg_parser.parse_args(sys.argv)
     if len(args) == 2:
         fortune_file = args[1]
