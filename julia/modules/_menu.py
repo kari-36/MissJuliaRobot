@@ -14,7 +14,7 @@
 #    along with this program.  If not, see < https://www.gnu.org/licenses/agpl-3.0.en.html/ >.
 
 
-from julia import CMD_HELP
+from julia import CMD_HELP, CMD_LIST
 from julia import tbot
 import io
 import re
