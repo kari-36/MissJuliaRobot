@@ -732,7 +732,7 @@ async def _(event):
             # Will send to current chat
             await tbot.send_message(
                 chat,
-                "<b>FedBan reason updated</b>"
+                "<b>New Federation Ban</b>"
                 "\n<b>Federation:</b> {}"
                 "\n<b>Federation Admin:</b> {}"
                 "\n<b>User:</b> {}"
