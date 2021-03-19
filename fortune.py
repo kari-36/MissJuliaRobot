@@ -85,10 +85,7 @@ def main():
             sys.exit(1)
 
     try:
-        if options.show_version:
-            print("fortune, version {}".format(__version__))
-        else:
-            print(get_random_fortune(fortune_file))
+        print(get_random_fortune(fortune_file))
     except ValueError as msg:
         print(msg, file=sys.stderr)
         sys.exit(1)
