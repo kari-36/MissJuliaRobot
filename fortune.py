@@ -24,8 +24,6 @@ from optparse import OptionParser
 
 def _random_int(start, end):
     try:
-        # Use SystemRandom, if it's available, since it's likely to have
-        # more entropy.
         r = random.SystemRandom()
     except BaseException:
         r = random
