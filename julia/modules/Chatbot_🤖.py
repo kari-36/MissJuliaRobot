@@ -18,7 +18,7 @@ from julia import CMD_HELP, BOT_ID
 import os
 from julia import tbot
 from time import time
-
+import asyncio
 import julia.modules.sql.chatbot_sql as sql
 from coffeehouse.api import API
 from coffeehouse.exception import CoffeeHouseError as CFError
