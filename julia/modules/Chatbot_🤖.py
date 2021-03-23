@@ -136,10 +136,12 @@ async def _(event):
             pass
         try:
             rep = api_client.think_thought(sesh, query)
-            await event.reply(rep)
         except CFError as e:
             print(e)
-
+        async with tbot.action(event.chat_id, 'typing'):           
+              await asyncio.sleep(1)
+              await event.reply(rep)
+        
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
