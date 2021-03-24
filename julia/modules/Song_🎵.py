@@ -165,9 +165,11 @@ async def download_song(v_url):
             else:
                 os.system("rm -rf *.mp3")
                 os.system("rm -rf *.webp")
+                os.system("rm -rf *.jpg")
                 return
             suck = await ubot.get_messages(JULIASONG, limit=None)
             for c in suck:
+              if not isinstance(c.message, types.MessageService):
                 if c.media != None:
                     name = c.media.document.attributes[0].title
                     if str(name) == songname:
@@ -177,6 +179,7 @@ async def download_song(v_url):
             await y.forward_to(JULIASONG)
             os.system("rm -rf *.mp3")
             os.system("rm -rf *.webp")
+            os.system("rm -rf *.jpg")
     except Exception as e:
         print(e)
 
@@ -274,6 +277,7 @@ async def download_video(v_url):
         else:
             os.system("rm -rf *.mp4")
             os.system("rm -rf *.webp")
+            os.system("rm -rf *.jpg")
             return
         suck = await ubot.get_messages(JULIAVSONG, limit=None)
         for c in suck:
@@ -282,10 +286,12 @@ async def download_video(v_url):
                 if str(name) == vsongname:
                     os.system("rm -rf *.mp4")
                     os.system("rm -rf *.webp")
+                    os.system("rm -rf *.jpg")
                     return
         await y.forward_to(JULIAVSONG)
         os.system("rm -rf *.mp4")
         os.system("rm -rf *.webp")
+        os.system("rm -rf *.jpg")
 
 
 @register(pattern="^/lyrics ?(.*)")
