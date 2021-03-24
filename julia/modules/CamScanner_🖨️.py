@@ -58,23 +58,15 @@ async def asciiart(event):
         elif event.chat_id == iid and event.sender_id == userss:
             pass
         else:
-            return
-    directory = "./"
-    test = os.listdir(directory)
-    for item in test:
-        if item.endswith(".jpg"):
-            os.remove(os.path.join(directory, item))
-        elif item.endswith(".png"):
-            os.remove(os.path.join(directory, item))
-        elif item.endswith(".jpeg"):
-            os.remove(os.path.join(directory, item))
+            return    
     reply_msg = await event.get_reply_message()
-    downloaded_file_name = await tbot.download_media(reply_msg, "./")
-    let = f"{downloaded_file_name}"
-    subprocess.run(["python", "scan.py", "--image", let])
-    await tbot.send_file(event.chat_id, "./scanned.jpg")
-    os.remove(f"{downloaded_file_name}")
-    os.remove("./scanned.jpg")
+    downloaded_file_name = await tbot.download_media(reply_msg, "prevscan.jpg")
+    try:    
+     subprocess.run(["python", "scan.py", "--image", "prevscan.jpg"])
+     await tbot.send_file(event.chat_id, "./scanned.jpg")
+    except:
+     os.remove("./prevscan.jpg")
+     os.remove("./scanned.jpg")
 
 
 file_help = os.path.basename(__file__)
