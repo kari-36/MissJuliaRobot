@@ -136,11 +136,11 @@ async def _(event):
             pass
         try:
             rep = api_client.think_thought(sesh, query)
-        except Exception as e:
-            await event.reply(e)
+        except Exception:
+            # await event.reply(e)
             return
         async with tbot.action(event.chat_id, 'typing'):           
-              await asyncio.sleep(1)
+              await asyncio.sleep(2)
               await event.reply(rep)
         
 
