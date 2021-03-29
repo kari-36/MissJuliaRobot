@@ -31,4 +31,6 @@ Deploy Julia to Heroku:
 - [tgbot](https://github.com/PaulSonOfLars/tgbot)<br />
 - [Haruka Aya](https://gitlab.com/HarukaNetwork/OSS/HarukaAya)
 
+**Note**: Some repositories may not be present here as they don't have any copyright license or is free to distribute without any license headers under licence such as (Free, MIT, Apache etc.)
+
 **And Last Of All thanks to [@lonami](http://t.me/lonami) for creating [Telethon](https://github.com/LonamiWebs/Telethon) !**
