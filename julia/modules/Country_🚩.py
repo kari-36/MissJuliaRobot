@@ -66,62 +66,29 @@ async def _(event):
        await event.reply("No information available for that country.")
        return
     name = a.get("name")
-    bb= a.get("altSpellings")
-    hu = ''
-    for p in bb:
-    	hu += p+",  "
-	
-    area = a.get("area")
-    borders = ""
-    hell = a.get("borders")
-    for fk in hell:
-	    borders += fk+",  "
-	
-    call = "" 
-    WhAt = a.get("callingCodes")
-    for what in WhAt:
-	    call+= what+"  "
-	
+    hu = str(a.get("altSpellings")).replace("[","").replace("]","")	
+    area = a.get("area")    
+    borders = str(a.get("borders")).replace("[","").replace("]","")	    
+    call = str(a.get("callingCodes")).replace("[","").replace("]","")
     capital = a.get("capital")
-    currencies = ""
-    fker = a.get("currencies")
-    for FKer in fker:
-	    currencies += FKer+",  "
-
+    currencies = str(a.get("currencies")).replace("[","").replace("]","")
     HmM = a.get("demonym")
     geo = a.get("geoJSON")
     pablo = geo.get("features")
     Pablo = pablo[0]
     PAblo = Pablo.get("geometry")
-    EsCoBaR= PAblo.get("type")
-    iso = ""
-    iSo = a.get("ISO")
-    for hitler in iSo:
-      po = iSo.get(hitler)
-      iso += po+",  "
+    EsCoBaR= PAblo.get("type")   
+    iso = str(a.get("ISO")).replace("[","").replace("]","")
     fla = iSo.get("alpha2")
     nox = fla.upper()
     okie = flag.flag(nox)
-
-    languages = a.get("languages")
-    lMAO=""
-    for lmao in languages:
-	    lMAO += lmao+",  "
-
+    lMAO = str(a.get("languages")).replace("[","").replace("]","")
     nonive = a.get("nativeName")
     waste = a.get("population")
     reg = a.get("region")
     sub = a.get("subregion")
-    tik = a.get("timezones")
-    tom =""
-    for jerry in tik:
-	    tom+=jerry+",   "
-
-    GOT = a.get("tld")
-    lanester = ""
-    for targaryen in GOT:
-	    lanester+=targaryen+",   "
-
+    tom = str(a.get("timezones")).replace("[","").replace("]","")
+    lanester = str(a.get("tld")).replace("[","").replace("]","")
     wiki = a.get("wiki")
 
     caption = f"""**Information Gathered Successfully**
