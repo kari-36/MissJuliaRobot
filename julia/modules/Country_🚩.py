@@ -84,7 +84,7 @@ async def _(event):
     for hitler in iSo:
       po = iSo.get(hitler)
       isso.append(po)
-    iso = str(isso).replace("[","").replace("]","")
+    iso = str(isso).replace("[","").replace("]","").replace("'","")
     fla = (a.get("ISO")).get("alpha2")    
     nox = fla.upper()
     okie = flag.flag(nox)
