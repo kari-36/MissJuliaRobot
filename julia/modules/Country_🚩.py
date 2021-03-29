@@ -31,7 +31,8 @@ async def _(event):
     try:
 	    a = country.info()
     except:
-	    await event.reply("Country Not Avaiable Currently")
+	    await event.reply("No information available for that country.")
+            return
     name = a.get("name")
     bb= a.get("altSpellings")
     hu = ''
@@ -112,10 +113,7 @@ Time Zones:- {tom}
 Top Level Domain:- {lanester}
 Wikipedia:- {wiki}</b></b>
 """        
-    await tbot.send_message(
-        event.chat_id,
-        caption,
-    )
+    await event.reply(caption)
     
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
