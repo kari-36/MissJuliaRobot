@@ -106,7 +106,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
-            await ubot.delete_messages(BOT_ID, response.id)
+            await response.delete()
         except Exception:
             pass
 
@@ -144,7 +144,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
-            await ubot.delete_messages(BOT_ID, response.id)
+            await response.delete()
         except Exception:
             pass
 
@@ -184,7 +184,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
-            await ubot.delete_messages(BOT_ID, response.id)
+            await response.delete()
         except Exception:
             pass
 
@@ -224,7 +224,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
-            await ubot.delete_messages(BOT_ID, response.id)
+            await response.delete()
         except Exception:
             pass
 
@@ -264,7 +264,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
-            await ubot.delete_messages(BOT_ID, response.id)
+            await response.delete()
         except Exception:
             pass
 
@@ -304,7 +304,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
-            await ubot.delete_messages(BOT_ID, response.id)
+            await response.delete()
         except Exception:
             pass
 
@@ -344,7 +344,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
-            await ubot.delete_messages(BOT_ID, response.id)
+            await response.delete()
         except Exception:
             pass
 
@@ -384,7 +384,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
-            await ubot.delete_messages(BOT_ID, response.id)
+            await response.delete()
         except Exception:
             pass
 
@@ -424,7 +424,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
-            await ubot.delete_messages(BOT_ID, response.id)            
+            await response.delete()            
         except Exception:
             pass
 
