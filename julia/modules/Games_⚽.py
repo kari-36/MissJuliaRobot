@@ -14,7 +14,7 @@
 #    along with this program.  If not, see < https://www.gnu.org/licenses/agpl-3.0.en.html/ >.
 
 
-from julia import CMD_HELP, OWNER_ID
+from julia import CMD_HELP, OWNER_ID, BOT_ID
 import os
 from julia import tbot
 from telethon import *
@@ -74,10 +74,10 @@ async def inline_query(client, bot, query):
 async def ramdomgames(event):
     if event.fwd_from:
         return
-    c = await (await inline_query(ubot, "@gamee", "1+2=3"))[0].click(
+    await (await  inline_query(ubot, "@gamee", "1+2=3"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
-    await c.delete()
+    
 
 @register(pattern="^/mathbattle$")
 async def ramdomgamess(event):
@@ -106,6 +106,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
+            await ubot.delete_messages(BOT_ID, response.id)
         except Exception:
             pass
 
@@ -114,8 +115,7 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    c = await (await inline_query(ubot, "@gamee", "MotoFX"))[0].click("MissJuliaRobot")
-    await c.delete()
+    await (await  inline_query(ubot, "@gamee", "MotoFX"))[0].click("MissJuliaRobot")
 
 
 @register(pattern="^/motofx$")
@@ -144,6 +144,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
+            await ubot.delete_messages(BOT_ID, response.id)
         except Exception:
             pass
 
@@ -152,10 +153,10 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    c = await (await inline_query(ubot, "@gamee", "Penalty Shooter"))[0].click(
+    await (await  inline_query(ubot, "@gamee", "Penalty Shooter"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
-    await c.delete()
+
 
 @register(pattern="^/penaltyshooter$")
 async def ramdomgamess(event):
@@ -183,6 +184,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
+            await ubot.delete_messages(BOT_ID, response.id)
         except Exception:
             pass
 
@@ -191,10 +193,9 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    c = await (await inline_query(ubot, "@gamee", "F1"))[0].click(
+    await (await  inline_query(ubot, "@gamee", "F1"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
-    await c.delete()
 
 
 @register(pattern="^/racingcar$")
@@ -223,6 +224,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
+            await ubot.delete_messages(BOT_ID, response.id)
         except Exception:
             pass
 
@@ -231,10 +233,9 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    c = await (await inline_query(ubot, "@gamee", "Karate"))[1].click(
+    await (await  inline_query(ubot, "@gamee", "Karate"))[1].click(
         "MissJuliaRobot", hide_via=True
     )
-    await c.delete()
 
 
 @register(pattern="^/karate$")
@@ -263,6 +264,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
+            await ubot.delete_messages(BOT_ID, response.id)
         except Exception:
             pass
 
@@ -271,10 +273,9 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    c = await (await inline_query(ubot, "@gamee", "Football"))[0].click(
+    await (await  inline_query(ubot, "@gamee", "Football"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
-    await c.delete()
 
 
 @register(pattern="^/footballstar$")
@@ -303,6 +304,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
+            await ubot.delete_messages(BOT_ID, response.id)
         except Exception:
             pass
 
@@ -311,10 +313,9 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    c = await (await inline_query(ubot, "@gamee", "Neon Blaster"))[0].click(
+    await (await  inline_query(ubot, "@gamee", "Neon Blaster"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
-    await c.delete()
 
 
 @register(pattern="^/neonblaster$")
@@ -343,6 +344,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
+            await ubot.delete_messages(BOT_ID, response.id)
         except Exception:
             pass
 
@@ -351,10 +353,9 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    c = await (await inline_query(ubot, "@gamee", "Disco"))[0].click(
+    await (await  inline_query(ubot, "@gamee", "Disco"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
-    await c.delete()
 
 
 @register(pattern="^/discoball$")
@@ -383,6 +384,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
+            await ubot.delete_messages(BOT_ID, response.id)
         except Exception:
             pass
 
@@ -391,10 +393,9 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    c = await (await inline_query(ubot, "@gamee", "Gravity"))[0].click(
+    await (await  inline_query(ubot, "@gamee", "Gravity"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
-    await c.delete()
 
 
 @register(pattern="^/gravityninja$")
@@ -423,6 +424,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
+            await ubot.delete_messages(BOT_ID, response.id)            
         except Exception:
             pass
 
