@@ -65,19 +65,19 @@ async def inline_query(client, bot, query):
     )
 
 
-## -- THANKS TO LONAMI FOR THIS FUNCTION --#
+# THANKS TO LONAMI FOR THIS FUNCTION 
 
-# -- MADE BY @MissJulia_Robot
+# MADE BY @MissJulia_Robot
 
 
 @juliabot(pattern="^/gameed")
 async def ramdomgames(event):
     if event.fwd_from:
         return
-    await (await inline_query(ubot, "@gamee", "1+2=3"))[0].click(
+    c = await (await inline_query(ubot, "@gamee", "1+2=3"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
-
+    await c.delete()
 
 @register(pattern="^/mathbattle$")
 async def ramdomgamess(event):
@@ -102,9 +102,10 @@ async def ramdomgamess(event):
                 events.NewMessage(incoming=True, from_users=OWNER_ID)
             )
             entity = await tbot.get_entity(OWNER_USERNAME)
-            await tbot.send_message(entity, "/gameed")
+            c = await tbot.send_message(entity, "/gameed")
             response = await response
             await response.forward_to(event.chat_id)
+            await c.delete()
         except Exception:
             pass
 
@@ -113,7 +114,8 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await inline_query(ubot, "@gamee", "MotoFX"))[0].click("MissJuliaRobot")
+    c = await (await inline_query(ubot, "@gamee", "MotoFX"))[0].click("MissJuliaRobot")
+    await c.delete()
 
 
 @register(pattern="^/motofx$")
@@ -138,9 +140,10 @@ async def ramdomgamess(event):
                 events.NewMessage(incoming=True, from_users=OWNER_ID)
             )
             entity = await tbot.get_entity(OWNER_USERNAME)
-            await tbot.send_message(entity, "/jsusxjxhxhxshsjs")
+            c = await tbot.send_message(entity, "/jsusxjxhxhxshsjs")
             response = await response
             await response.forward_to(event.chat_id)
+            await c.delete()
         except Exception:
             pass
 
@@ -149,10 +152,10 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await inline_query(ubot, "@gamee", "Penalty Shooter"))[0].click(
+    c = await (await inline_query(ubot, "@gamee", "Penalty Shooter"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
-
+    await c.delete()
 
 @register(pattern="^/penaltyshooter$")
 async def ramdomgamess(event):
@@ -176,9 +179,10 @@ async def ramdomgamess(event):
                 events.NewMessage(incoming=True, from_users=OWNER_ID)
             )
             entity = await tbot.get_entity(OWNER_USERNAME)
-            await tbot.send_message(entity, "/jsuskhfkhdxjzhsjs")
+            c = await tbot.send_message(entity, "/jsuskhfkhdxjzhsjs")
             response = await response
             await response.forward_to(event.chat_id)
+            await c.delete()
         except Exception:
             pass
 
@@ -187,9 +191,10 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await inline_query(ubot, "@gamee", "F1"))[0].click(
+    c = await (await inline_query(ubot, "@gamee", "F1"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
+    await c.delete()
 
 
 @register(pattern="^/racingcar$")
@@ -214,9 +219,10 @@ async def ramdomgamess(event):
                 events.NewMessage(incoming=True, from_users=OWNER_ID)
             )
             entity = await tbot.get_entity(OWNER_USERNAME)
-            await tbot.send_message(entity, "/jslgggfsslaxvuoqdjlxvqs")
+            c = await tbot.send_message(entity, "/jslgggfsslaxvuoqdjlxvqs")
             response = await response
             await response.forward_to(event.chat_id)
+            await c.delete()
         except Exception:
             pass
 
@@ -225,9 +231,10 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await inline_query(ubot, "@gamee", "Karate"))[1].click(
+    c = await (await inline_query(ubot, "@gamee", "Karate"))[1].click(
         "MissJuliaRobot", hide_via=True
     )
+    await c.delete()
 
 
 @register(pattern="^/karate$")
@@ -252,9 +259,10 @@ async def ramdomgamess(event):
                 events.NewMessage(incoming=True, from_users=OWNER_ID)
             )
             entity = await tbot.get_entity(OWNER_USERNAME)
-            await tbot.send_message(entity, "/jsdndbbduoqdjlxvqs")
+            c = await tbot.send_message(entity, "/jsdndbbduoqdjlxvqs")
             response = await response
             await response.forward_to(event.chat_id)
+            await c.delete()
         except Exception:
             pass
 
@@ -263,9 +271,10 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await inline_query(ubot, "@gamee", "Football"))[0].click(
+    c = await (await inline_query(ubot, "@gamee", "Football"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
+    await c.delete()
 
 
 @register(pattern="^/footballstar$")
@@ -290,9 +299,10 @@ async def ramdomgamess(event):
                 events.NewMessage(incoming=True, from_users=OWNER_ID)
             )
             entity = await tbot.get_entity(OWNER_USERNAME)
-            await tbot.send_message(entity, "/jsdndbafjaffajlxvqs")
+            c = await tbot.send_message(entity, "/jsdndbafjaffajlxvqs")
             response = await response
             await response.forward_to(event.chat_id)
+            await c.delete()
         except Exception:
             pass
 
@@ -301,9 +311,10 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await inline_query(ubot, "@gamee", "Neon Blaster"))[0].click(
+    c = await (await inline_query(ubot, "@gamee", "Neon Blaster"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
+    await c.delete()
 
 
 @register(pattern="^/neonblaster$")
@@ -328,9 +339,10 @@ async def ramdomgamess(event):
                 events.NewMessage(incoming=True, from_users=OWNER_ID)
             )
             entity = await tbot.get_entity(OWNER_USERNAME)
-            await tbot.send_message(entity, "/jsddjdhiwws")
+            c = await tbot.send_message(entity, "/jsddjdhiwws")
             response = await response
             await response.forward_to(event.chat_id)
+            await c.delete()
         except Exception:
             pass
 
@@ -339,9 +351,10 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await inline_query(ubot, "@gamee", "Disco"))[0].click(
+    c = await (await inline_query(ubot, "@gamee", "Disco"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
+    await c.delete()
 
 
 @register(pattern="^/discoball$")
@@ -366,9 +379,10 @@ async def ramdomgamess(event):
                 events.NewMessage(incoming=True, from_users=OWNER_ID)
             )
             entity = await tbot.get_entity(OWNER_USERNAME)
-            await tbot.send_message(entity, "/whwyywwhewws")
+            c = await tbot.send_message(entity, "/whwyywwhewws")
             response = await response
             await response.forward_to(event.chat_id)
+            await c.delete()
         except Exception:
             pass
 
@@ -377,9 +391,10 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await inline_query(ubot, "@gamee", "Gravity"))[0].click(
+    c = await (await inline_query(ubot, "@gamee", "Gravity"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
+    await c.delete()
 
 
 @register(pattern="^/gravityninja$")
@@ -404,9 +419,10 @@ async def ramdomgamess(event):
                 events.NewMessage(incoming=True, from_users=OWNER_ID)
             )
             entity = await tbot.get_entity(OWNER_USERNAME)
-            await tbot.send_message(entity, "/wssksskxxskss")
+            c = await tbot.send_message(entity, "/wssksskxxskss")
             response = await response
             await response.forward_to(event.chat_id)
+            await c.delete()
         except Exception:
             pass
 
