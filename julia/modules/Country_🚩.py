@@ -29,10 +29,10 @@ async def _(event):
     lol = input_str
     country = CountryInfo(lol)
     try:
-	    a = country.info()
+       a = country.info()
     except:
-	    await event.reply("No information available for that country.")
-            return
+       await event.reply("No information available for that country.")
+       return
     name = a.get("name")
     bb= a.get("altSpellings")
     hu = ''
