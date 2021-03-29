@@ -13,7 +13,6 @@ client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
 db = client["missjuliarobot"]
 nightmod = db.nightmode
-approved_users = db.approve
 
 async def can_change_info(message):
     result = await tbot(
@@ -87,7 +86,7 @@ async def profanity(event):
                         "Nightmode is already activated for this chat."
                     )
                     return
-            nightmod.insert_one({"id": event.chat_id, "valid": True, "zone": "America/New_York", "time": eval(dateparser.parse(f"7 AM", settings={"TIMEZONE": f"America/New_York", "DATE_ORDER": "DMY"})})
+            nightmod.insert_one({"id": event.chat_id, "valid": True, "zone": "America/New_York", "time": "7"})
             await event.reply("Nightmode turned on for this chat.")
     if input == "off":
         if event.is_group:
