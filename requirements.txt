@@ -70,3 +70,4 @@ cloudmersive_virus_api_client==3.0.1
 dateparser==1.0.0
 cloudmersive-ocr-api-client==3.0.1
 countryinfo
+Flag==0.1.1
