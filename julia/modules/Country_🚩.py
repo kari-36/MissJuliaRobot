@@ -19,12 +19,44 @@ import html, os
 from countryinfo import CountryInfo
 from julia import *
 from julia.events import register
+from telethon import types
+from telethon.tl import functions
+from pymongo import MongoClient
+from julia import MONGO_DB_URI
+from telethon import events
 
+client = MongoClient()
+client = MongoClient(MONGO_DB_URI)
+db = client["missjuliarobot"]
+approved_users = db.approve
+
+
+async def is_register_admin(chat, user):
+    if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
+        return isinstance(
+            (
+                await tbot(functions.channels.GetParticipantRequest(chat, user))
+            ).participant,
+            (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
+        )
+    if isinstance(chat, types.InputPeerUser):
+        return True
 
 @register(pattern="^/country (.*)")
 async def _(event):
     if event.fwd_from:
         return
+    approved_userss = approved_users.find({})
+    for ch in approved_userss:
+            iid = ch["id"]
+            userss = ch["user"]
+    if event.is_group:
+            if await is_register_admin(event.input_chat, event.message.sender_id):
+                pass
+            elif event.chat_id == iid and event.sender_id == userss:
+                pass
+            else:
+                return
     input_str = event.pattern_match.group(1)
     lol = input_str
     country = CountryInfo(lol)
@@ -93,25 +125,25 @@ async def _(event):
     wiki = a.get("wiki")
 
     caption = f"""**Information Gathered Successfully**
-Country Name:- {name}
-Alternative Spellings:- {hu}
-Country Area:- {area} square kilometers
-Borders:- {borders}
-Calling Codes:- {call}
-Country's Capital:- {capital}
-Country's currency:- {currencies}
-Country's Flag:- {okie}
-Demonym:- {HmM}
-Country Type:- {EsCoBaR}
-ISO Names:- {iso}
-Languages:- {lMAO}
-Native Name:- {nonive}
-Population:- {waste}
-Region:- {reg}
-Sub Region:- {sub}
-Time Zones:- {tom}
-Top Level Domain:- {lanester}
-Wikipedia:- {wiki}</b></b>
+Country Name:- `{name}`
+Alternative Spellings:- `{hu}`
+Country Area:- `{area} square kilometers`
+Borders:- `{borders}`
+Calling Codes:- `{call}`
+Country's Capital:- `{capital}`
+Country's currency:- `{currencies}`
+Country's Flag:- `{okie}`
+Demonym:- `{HmM}`
+Country Type:- `{EsCoBaR}`
+ISO Names:- `{iso}`
+Languages:- `{lMAO}`
+Native Name:- `{nonive}`
+Population:- `{waste}`
+Region:- `{reg}`
+Sub Region:- `{sub}`
+Time Zones:- `{tom}`
+Top Level Domain:- `{lanester}`
+Wikipedia:- `{wiki}`
 """        
     await event.reply(caption)
     
