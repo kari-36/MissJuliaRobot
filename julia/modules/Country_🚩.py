@@ -65,30 +65,36 @@ async def _(event):
     except:
        await event.reply("No information available for that country.")
        return
+       
     name = a.get("name")
-    hu = str(a.get("altSpellings")).replace("[","").replace("]","")	
+    hu = str(a.get("altSpellings")).replace("[","").replace("]","").replace("'","") 
     area = a.get("area")    
-    borders = str(a.get("borders")).replace("[","").replace("]","")	    
-    call = str(a.get("callingCodes")).replace("[","").replace("]","")
+    borders = str(a.get("borders")).replace("[","").replace("]","").replace("'","")     
+    call = str(a.get("callingCodes")).replace("[","").replace("]","").replace("'","")
     capital = a.get("capital")
-    currencies = str(a.get("currencies")).replace("[","").replace("]","")
+    currencies = str(a.get("currencies")).replace("[","").replace("]","").replace("'","")
     HmM = a.get("demonym")
     geo = a.get("geoJSON")
     pablo = geo.get("features")
     Pablo = pablo[0]
     PAblo = Pablo.get("geometry")
     EsCoBaR= PAblo.get("type")   
-    iso = str(a.get("ISO")).replace("[","").replace("]","")
-    fla = iSo.get("alpha2")
+    iSo = a.get("ISO")
+    isso =[]
+    for hitler in iSo:
+      po = iSo.get(hitler)
+      isso.append(po)
+    iso = str(isso).replace("[","").replace("]","")
+    fla = (a.get("ISO")).get("alpha2")    
     nox = fla.upper()
     okie = flag.flag(nox)
-    lMAO = str(a.get("languages")).replace("[","").replace("]","")
+    lMAO = str(a.get("languages")).replace("[","").replace("]","").replace("'","")
     nonive = a.get("nativeName")
     waste = a.get("population")
     reg = a.get("region")
     sub = a.get("subregion")
-    tom = str(a.get("timezones")).replace("[","").replace("]","")
-    lanester = str(a.get("tld")).replace("[","").replace("]","")
+    tom = str(a.get("timezones")).replace("[","").replace("]","").replace("'","")
+    lanester = str(a.get("tld")).replace("[","").replace("]","").replace("'","")
     wiki = a.get("wiki")
 
     caption = f"""**Information Gathered Successfully**
