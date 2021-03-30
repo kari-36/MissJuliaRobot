@@ -32,6 +32,6 @@ except Exception:
 async def main():
     async with tbot:        
         await tbot.catch_up()
-        await tbot.run_until_disconnected()
+        # await tbot.run_until_disconnected()
 
 asyncio.get_event_loop().run_until_complete(main())
