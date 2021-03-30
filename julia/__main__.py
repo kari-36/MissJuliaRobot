@@ -30,9 +30,9 @@ except Exception:
 
 # USING LONG POLLING
 async def main():
- while True:
-    async with tbot:        
+    while True:       
         await tbot.catch_up()
-        # await tbot.run_until_disconnected()
+        await asyncio.sleep(1)
+        print ("Using long polling.")
 
 asyncio.get_event_loop().run_until_complete(main())
