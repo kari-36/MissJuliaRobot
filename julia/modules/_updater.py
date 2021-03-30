@@ -131,11 +131,13 @@ async def upstream(ups):
     else:
         await lol.edit("`Still Running ....`")
     
+    await updateme_requirements()
+
     try:
         ups_rem.pull(ac_br)
     except GitCommandError:
         repo.git.reset("--hard", "FETCH_HEAD")
-    reqs_upgrade = await updateme_requirements()
+    
     await lol.edit("`Successfully Updated!\n" "restarting......`")
     args = [sys.executable, "-m", "julia"]
     execle(sys.executable, *args, environ)
