@@ -96,7 +96,7 @@ if ENV:
     try:
         ubot.start()
     except BaseException:
-        print("Network Error !")
+        print("Network Error/INVALID TOKEN !")
         sys.exit(1)
 
 else:
