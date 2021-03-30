@@ -24,7 +24,7 @@ Deploy Julia to Heroku:
 For any assistance you may join our OT chat - [Julia](https://t.me/MissJuliaRobotOT)<br />
 You may get ban if you ask how to deploy in our support chat.
 
-### Related Channels/Chats ###
+#### Related Channels/Chats ####
 - [@MissJuliaRobotNews](https://t.me/MissJuliaRobotNews)
 - [@MissJuliaRobotSupport](https://t.me/MissJuliaRobotSupport)
 - [@MissJuliaRobotOT](https://t.me/MissJuliaRobotOT)
