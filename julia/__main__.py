@@ -29,10 +29,11 @@ except Exception:
     exit(1)
 
 # USING LONG POLLING
-async def main():
-    while True:       
-        await tbot.catch_up()
-        await asyncio.sleep(1)
-        print ("Using long polling.")
+async def long_polling():
+    await tbot.catch_up()    
 
-asyncio.get_event_loop().run_until_complete(main())
+if len(argv) not in (1, 3, 4):
+    tbot.disconnect()
+else:
+    asyncio.run(long_polling())
+    tbot.run_until_disconnected()
