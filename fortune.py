@@ -67,7 +67,7 @@ def get_random_fortune(fortune_file):
     return fortunes[randomRecord]
 
 
-def main():    
+def main():
     usage = "Usage: %prog [OPTIONS] [fortune_file]"
     arg_parser = OptionParser(usage=usage)
     options, args = arg_parser.parse_args(sys.argv)

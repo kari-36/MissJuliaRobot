@@ -65,7 +65,7 @@ async def inline_query(client, bot, query):
     )
 
 
-# THANKS TO LONAMI FOR THIS FUNCTION 
+# THANKS TO LONAMI FOR THIS FUNCTION
 
 # MADE BY @MissJulia_Robot
 
@@ -74,10 +74,10 @@ async def inline_query(client, bot, query):
 async def ramdomgames(event):
     if event.fwd_from:
         return
-    await (await  inline_query(ubot, "@gamee", "1+2=3"))[0].click(
+    await (await inline_query(ubot, "@gamee", "1+2=3"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
-    
+
 
 @register(pattern="^/mathbattle$")
 async def ramdomgamess(event):
@@ -115,7 +115,7 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await  inline_query(ubot, "@gamee", "MotoFX"))[0].click("MissJuliaRobot")
+    await (await inline_query(ubot, "@gamee", "MotoFX"))[0].click("MissJuliaRobot")
 
 
 @register(pattern="^/motofx$")
@@ -153,7 +153,7 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await  inline_query(ubot, "@gamee", "Penalty Shooter"))[0].click(
+    await (await inline_query(ubot, "@gamee", "Penalty Shooter"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
 
@@ -193,7 +193,7 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await  inline_query(ubot, "@gamee", "F1"))[0].click(
+    await (await inline_query(ubot, "@gamee", "F1"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
 
@@ -233,7 +233,7 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await  inline_query(ubot, "@gamee", "Karate"))[1].click(
+    await (await inline_query(ubot, "@gamee", "Karate"))[1].click(
         "MissJuliaRobot", hide_via=True
     )
 
@@ -273,7 +273,7 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await  inline_query(ubot, "@gamee", "Football"))[0].click(
+    await (await inline_query(ubot, "@gamee", "Football"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
 
@@ -313,7 +313,7 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await  inline_query(ubot, "@gamee", "Neon Blaster"))[0].click(
+    await (await inline_query(ubot, "@gamee", "Neon Blaster"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
 
@@ -353,7 +353,7 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await  inline_query(ubot, "@gamee", "Disco"))[0].click(
+    await (await inline_query(ubot, "@gamee", "Disco"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
 
@@ -393,7 +393,7 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await  inline_query(ubot, "@gamee", "Gravity"))[0].click(
+    await (await inline_query(ubot, "@gamee", "Gravity"))[0].click(
         "MissJuliaRobot", hide_via=True
     )
 
@@ -424,7 +424,7 @@ async def ramdomgamess(event):
             response = await response
             await response.forward_to(event.chat_id)
             await c.delete()
-            await response.delete()            
+            await response.delete()
         except Exception:
             pass
 

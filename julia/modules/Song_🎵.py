@@ -169,13 +169,13 @@ async def download_song(v_url):
                 return
             suck = await ubot.get_messages(JULIASONG, limit=None)
             for c in suck:
-              if not isinstance(c.message, types.MessageService):
-                if c.media != None:
-                    name = c.media.document.attributes[0].title
-                    if str(name) == songname:
-                        os.system("rm -rf *.mp3")
-                        os.system("rm -rf *.webp")
-                        return
+                if not isinstance(c.message, types.MessageService):
+                    if c.media != None:
+                        name = c.media.document.attributes[0].title
+                        if str(name) == songname:
+                            os.system("rm -rf *.mp3")
+                            os.system("rm -rf *.webp")
+                            return
             await y.forward_to(JULIASONG)
             os.system("rm -rf *.mp3")
             os.system("rm -rf *.webp")

@@ -207,7 +207,7 @@ async def get_user_from_event(event):
         if not user:
             await event.reply("Pass the user's username, id or reply!")
             return
-        
+
         try:
             user_obj = await tbot.get_entity(user)
         except (TypeError, ValueError) as err:

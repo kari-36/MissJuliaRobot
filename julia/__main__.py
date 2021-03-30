@@ -30,8 +30,9 @@ except Exception:
 
 # USING LONG POLLING
 async def long_polling():
-      await tbot.catch_up()
-      await ubot.catch_up()
+    await tbot.catch_up()
+    await ubot.catch_up()
+
 
 if len(argv) not in (1, 3, 4):
     tbot.disconnect()

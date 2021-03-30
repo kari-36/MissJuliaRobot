@@ -139,10 +139,10 @@ async def _(event):
         except Exception:
             # await event.reply(e)
             return
-        async with tbot.action(event.chat_id, 'typing'):           
-              await asyncio.sleep(2)
-              await event.reply(rep)
-        
+        async with tbot.action(event.chat_id, "typing"):
+            await asyncio.sleep(2)
+            await event.reply(rep)
+
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
