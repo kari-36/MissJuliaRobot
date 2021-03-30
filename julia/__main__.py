@@ -30,6 +30,7 @@ except Exception:
 
 # USING LONG POLLING
 async def main():
+ while True:
     async with tbot:        
         await tbot.catch_up()
         # await tbot.run_until_disconnected()
