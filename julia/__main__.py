@@ -27,6 +27,10 @@ except Exception:
     print("Network Error !")
     exit(1)
 
+# USING LONG POLLING
+    await tbot.catch_up()
+    await ubot.catch_up()
+
 if len(argv) not in (1, 3, 4):
     tbot.disconnect()
 else:
