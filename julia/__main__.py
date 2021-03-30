@@ -25,7 +25,7 @@ import julia.events
 try:
     tbot.start(bot_token=TOKEN)
 except Exception:
-    print("Network Error !")
+    print("Network Error/INVALID TOKEN !")
     exit(1)
 
 # USING LONG POLLING
