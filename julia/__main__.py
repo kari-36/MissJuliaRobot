@@ -15,8 +15,9 @@
 
 
 from sys import argv, exit
-from julia import tbot
+from julia import tbot, ubot
 from julia import TOKEN
+import asyncio
 
 # IDK WHY IT'S SO IMPORTANT, JUST DON'T REMOVE THIS
 import julia.events
@@ -28,10 +29,12 @@ except Exception:
     exit(1)
 
 # USING LONG POLLING
-tbot.catch_up()
-ubot.catch_up()
+async def long_polling():
+      await tbot.catch_up()
+      await ubot.catch_up()
 
 if len(argv) not in (1, 3, 4):
     tbot.disconnect()
 else:
+    asyncio.run(long_polling())
     tbot.run_until_disconnected()
