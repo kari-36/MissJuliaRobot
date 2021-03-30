@@ -130,8 +130,12 @@ async def upstream(ups):
         await lol.edit("`Force-Syncing to latest master bot code, please wait...`")
     else:
         await lol.edit("`Still Running ....`")
-    
-    await updateme_requirements()
+
+    try:
+        newpip = await updateme_requirements()
+    except:       
+        await event.reply(newpip)
+        return
 
     try:
         ups_rem.pull(ac_br)
