@@ -22,11 +22,6 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 from julia import OWNER_ID, tbot, UPSTREAM_REPO_URL
 
-requirements_path = path.join(
-    path.dirname(path.dirname(path.dirname(__file__))), "requirements.txt"
-)
-
-
 async def gen_chlog(repo, diff):
     ch_log = ""
     d_form = "%d/%m/%y"
@@ -35,21 +30,6 @@ async def gen_chlog(repo, diff):
             f"•[{c.committed_datetime.strftime(d_form)}]: {c.summary} by <{c.author}>\n"
         )
     return ch_log
-
-
-async def updateme_requirements():
-    reqs = str(requirements_path)
-    try:
-        process = await asyncio.create_subprocess_shell(
-            " ".join([sys.executable, "-m", "pip", "install", "-r", reqs]),
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-        )
-        await process.communicate()
-        return process.returncode
-    except Exception as e:
-        return repr(e)
-
 
 @register(pattern="^/update(?: |$)(.*)")
 async def upstream(ups):
@@ -130,12 +110,6 @@ async def upstream(ups):
         await lol.edit("`Force-Syncing to latest master bot code, please wait...`")
     else:
         await lol.edit("`Still Running ....`")
-
-    try:
-        newpip = await updateme_requirements()
-    except:       
-        await event.reply(newpip)
-        return
 
     try:
         ups_rem.pull(ac_br)
