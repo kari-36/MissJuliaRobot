@@ -18,7 +18,7 @@ from googleapiclient.discovery import build
 from youtubesearchpython import VideosSearch
 from julia import *
 from html import unescape
-import os
+import os, re
 import requests
 from telethon import types
 from telethon.tl import functions
@@ -156,6 +156,8 @@ async def yts_search(video_q):
     chn= (h['result'][0]['channel']['name'])
     chnl= (h['result'][0]['channel']['link'])
     vlink= (h['result'][0]['link'])
+    g= (h['result'][0]['thumbnails'][0]['url'])
+    f=re.sub("\?.*$", "", g) 
     final = f"""**Extracted information from youtube**:\n
 **Title**: `{title}`
 **Published Time**: `{ptime}`
