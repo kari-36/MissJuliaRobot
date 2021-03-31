@@ -166,8 +166,8 @@ async def yts_search(video_q):
 **Channel Link**: `{chnl}`
 **Video Link**: `{vlink}`
 """
-    await video_q.reply(final)
-
+    await video_q.send_file(event.chat_id, f, reply_to=event.sender_id, file_name="thumb.jpg", caption=final)
+    
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
