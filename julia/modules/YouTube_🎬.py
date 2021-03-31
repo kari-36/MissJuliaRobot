@@ -15,6 +15,7 @@
 
 
 from googleapiclient.discovery import build
+from youtubesearchpython import VideosSearch
 from julia import *
 from html import unescape
 import os
@@ -120,12 +121,49 @@ async def yts_search(video_q):
     await c.edit(result)
 
 
+@register(pattern="^/ytinfo (.*)")
+async def yts_search(video_q):
+    approved_userss = approved_users.find({})
+    for ch in approved_userss:
+        iid = ch["id"]
+        userss = ch["user"]
+    if video_q.is_group:
+        if await is_register_admin(video_q.input_chat, video_q.message.sender_id):
+            pass
+        elif video_q.chat_id == iid and video_q.sender_id == userss:
+            pass
+        else:
+            return
+    query = video_q.pattern_match.group(1)    
+    videosSearch = VideosSearch(query, limit = 1)  
+    h = videosSearch.result()
+    title= (h['result'][0]['title'])
+    ptime= (h['result'][0]['publishedTime'])
+    dur= (h['result'][0]['duration'])
+    views= (h['result'][0]['viewCount']['short'])
+    des= (h['result'][0]['descriptionSnippet'][0]['text'])
+    chn= (h['result'][0]['channel']['name'])
+    chnl= (h['result'][0]['channel']['link'])
+    vlink= (h['result'][0]['link'])
+    final = """**Extracted information from youtube**:
+**Title**: `{title}`
+**Published Time**: `{ptime}`
+**Duration**: `{dur}`
+**Views**: `{views}`
+**Description**: `{des}`
+**Channel Name**: `{chn}`
+**Channel Link**: `{chnl}`
+**Video Link**: `{vlink}`
+"""
+    await video_q.reply(final)
+
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
 
 __help__ = """
  - /yts <query>: Searches your query in youtube and returns results
+ - /ytinfo <video link>: Returns information about the youtube video
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
