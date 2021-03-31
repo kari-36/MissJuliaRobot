@@ -136,7 +136,7 @@ async def yts_search(video_q):
         else:
             return
     query = video_q.pattern_match.group(1)  
-    if not query.startswith("https://www.youtube.com/watch?v="):
+    if not query.startswith("https://youtu.be/"):
        await video_q.reply("Invalid youtube link")
        return 
     r = requests.get(query)
