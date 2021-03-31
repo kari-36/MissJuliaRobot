@@ -17,7 +17,6 @@
 from sys import argv, exit
 from julia import tbot
 from julia import TOKEN
-import asyncio
 
 # IDK WHY IT'S SO IMPORTANT, JUST DON'T REMOVE THIS
 import julia.events
@@ -28,9 +27,7 @@ except Exception:
     print("Network Error/INVALID TOKEN !")
     exit(1)
 
-# USING LONG POLLING
-async def main(tbot):
-  await tbot.catch_up()
-  await tbot.run_until_disconnected()
-
-asyncio.get_event_loop().run_until_complete(main(tbot))
+if len(argv) not in (1, 3, 4):
+    tbot.disconnect()
+else:
+    tbot.run_until_disconnected()
