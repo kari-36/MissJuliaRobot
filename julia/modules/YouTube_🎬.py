@@ -19,6 +19,7 @@ from youtubesearchpython import VideosSearch
 from julia import *
 from html import unescape
 import os
+import requests
 from telethon import types
 from telethon.tl import functions
 from julia.events import register
@@ -134,9 +135,19 @@ async def yts_search(video_q):
             pass
         else:
             return
-    query = video_q.pattern_match.group(1)    
+    query = video_q.pattern_match.group(1)  
+    if not query.startswith("https://www.youtube.com/watch?v="):
+       await video_q.reply("Invalid youtube link")
+       return 
+    r = requests.get(query)
+    if "Video unavailable" in r.text:
+       await video_q.reply("Invalid youtube link")
+       return
     videosSearch = VideosSearch(query, limit = 1)  
     h = videosSearch.result()
+    if h['result'] == []:
+       await video_q.reply("Invalid youtube link")
+       return
     title= (h['result'][0]['title'])
     ptime= (h['result'][0]['publishedTime'])
     dur= (h['result'][0]['duration'])
@@ -156,6 +167,7 @@ async def yts_search(video_q):
 **Video Link**: `{vlink}`
 """
     await video_q.reply(final)
+
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
