@@ -121,8 +121,36 @@ async def _(event):
                 chats = botcheck.find({})
                 for c in chats:
                     if event.chat_id == c["id"]:
-                        current_message = await event.reply(
-                            current_saved_welcome_message.format(
+                        if "|" in current_saved_welcome_message:
+                            filter, options = current_saved_welcome_message.split("|")
+                        else:
+                            filter = str(current_saved_welcome_message)
+                        try:
+                            filter = filter.strip()
+                            button = options.strip()
+                            if "•" in button:
+                               mbutton = button.split("•")
+                               lbutton = []
+                            for i in mbutton:
+                              params = re.findall(r"\'(.*?)\'", i) or re.findall(
+                                r"\"(.*?)\"", i
+                              )                    
+                            lbutton.append(params)
+                            longbutton = []
+                            for c in lbutton:
+                              butto = [Button.url(*c)]
+                              longbutton.append(butto)                                     
+                            else:
+                              params = re.findall(r"\'(.*?)\'", button) or re.findall(
+                                r"\"(.*?)\"", button
+                              )
+                              butto = [Button.url(*params)]                                
+                        except BaseException:
+                              filter = filter.strip()
+                              butto = None                
+                        try:                                
+                         current_message = await event.reply(
+                            filter.format(
                                 mention=mention,
                                 title=title,
                                 count=count,
@@ -130,9 +158,9 @@ async def _(event):
                                 last=last,
                                 fullname=fullname,
                                 username=username,
-                                userid=userid,
+                                userid=userid,                                
                             ),
-                            file=cws.media_file_id,
+                            file=cws.media_file_id,                            
                             buttons=[
                                 [
                                     Button.inline(
@@ -144,23 +172,89 @@ async def _(event):
                                         "I am not a bot ✔️", data=f"check-bot-{userid}"
                                     )
                                 ],
-                            ],
-                        )
-                        chats = verified_user.find({})
-                        for c in chats:
+                            ] + longbutton,
+                         ) 
+                         chats = verified_user.find({})
+                         for c in chats:
                             if event.chat_id == c["id"] and userid == c["user"]:
                                 update_previous_welcome(
                                     event.chat_id, current_message.id
                                 )
                                 return
-                        await tbot(
+                         await tbot(
                             EditBannedRequest(event.chat_id, userid, MUTE_RIGHTS)
-                        )
-                        update_previous_welcome(event.chat_id, current_message.id)
-                        return  # needy as we are in for loop
+                         )
+                         update_previous_welcome(event.chat_id, current_message.id)
+                         return  # needy as we are in for loop
+                        except:                    
+                         current_message = await event.reply(
+                            filter.format(
+                                mention=mention,
+                                title=title,
+                                count=count,
+                                first=first,
+                                last=last,
+                                fullname=fullname,
+                                username=username,
+                                userid=userid,
+                            ),
+                            file=cws.media_file_id,                            
+                            buttons=[
+                                [
+                                    Button.inline(
+                                        "Rules ✝️", data=f"start-ruless-{userid}"
+                                    )
+                                ],
+                                [
+                                    Button.inline(
+                                        "I am not a bot ✔️", data=f"check-bot-{userid}"
+                                    )
+                                ],
+                            ] + butto,
+                         ) 
+                         chats = verified_user.find({})
+                         for c in chats:
+                            if event.chat_id == c["id"] and userid == c["user"]:
+                                update_previous_welcome(
+                                    event.chat_id, current_message.id
+                                )
+                                return
+                         await tbot(
+                            EditBannedRequest(event.chat_id, userid, MUTE_RIGHTS)
+                         )
+                         update_previous_welcome(event.chat_id, current_message.id)
+                         return  # needy as we are in for loop                                  
                 # for loop
-                current_message = await event.reply(
-                    current_saved_welcome_message.format(
+                if "|" in current_saved_welcome_message:
+                            filter, options = current_saved_welcome_message.split("|")
+                else:
+                            filter = str(current_saved_welcome_message)
+                try:
+                            filter = filter.strip()
+                            button = options.strip()
+                            if "•" in button:
+                               mbutton = button.split("•")
+                               lbutton = []
+                            for i in mbutton:
+                              params = re.findall(r"\'(.*?)\'", i) or re.findall(
+                                r"\"(.*?)\"", i
+                              )                    
+                            lbutton.append(params)
+                            longbutton = []
+                            for c in lbutton:
+                              butto = [Button.url(*c)]
+                              longbutton.append(butto)                                     
+                            else:
+                              params = re.findall(r"\'(.*?)\'", button) or re.findall(
+                                r"\"(.*?)\"", button
+                              )
+                              butto = [Button.url(*params)]                                       
+                except BaseException:
+                              filter = filter.strip()
+                              butto = None           
+                try:               
+                 current_message = await event.reply(
+                    filter.format(
                         mention=mention,
                         title=title,
                         count=count,
@@ -168,20 +262,67 @@ async def _(event):
                         last=last,
                         fullname=fullname,
                         username=username,
-                        userid=userid,
+                        userid=userid,                        
                     ),
                     file=cws.media_file_id,
                     buttons=[
                         [Button.inline("Rules ✝️", data=f"start-ruless-{userid}")]
-                    ],
-                )
-                update_previous_welcome(event.chat_id, current_message.id)
-            else:
+                    ] + longbutton,                    
+                 )
+                 update_previous_welcome(event.chat_id, current_message.id)
+                except:
+                 current_message = await event.reply(
+                    filter.format(
+                        mention=mention,
+                        title=title,
+                        count=count,
+                        first=first,
+                        last=last,
+                        fullname=fullname,
+                        username=username,
+                        userid=userid,                        
+                    ),
+                    file=cws.media_file_id,
+                    buttons=[
+                        [Button.inline("Rules ✝️", data=f"start-ruless-{userid}")]
+                    ] + butto,                   
+                 )
+                 update_previous_welcome(event.chat_id, current_message.id)                
+
+            else:         
                 chats = botcheck.find({})
                 for c in chats:
                     if event.chat_id == c["id"]:
-                        current_message = await event.reply(
-                            current_saved_welcome_message.format(
+                        if "|" in current_saved_welcome_message:
+                            filter, options = current_saved_welcome_message.split("|")
+                        else:
+                            filter = str(current_saved_welcome_message)
+                        try:
+                            filter = filter.strip()
+                            button = options.strip()
+                            if "•" in button:
+                               mbutton = button.split("•")
+                               lbutton = []
+                            for i in mbutton:
+                              params = re.findall(r"\'(.*?)\'", i) or re.findall(
+                                r"\"(.*?)\"", i
+                              )                    
+                            lbutton.append(params)
+                            longbutton = []
+                            for c in lbutton:
+                              butto = [Button.url(*c)]
+                              longbutton.append(butto)                                     
+                            else:
+                              params = re.findall(r"\'(.*?)\'", button) or re.findall(
+                                r"\"(.*?)\"", button
+                              )
+                              butto = [Button.url(*params)]                                
+                        except BaseException:
+                              filter = filter.strip()
+                              butto = None               
+                        try:                    
+                         current_message = await event.reply(
+                            filter.format(
                                 mention=mention,
                                 title=title,
                                 count=count,
@@ -198,23 +339,84 @@ async def _(event):
                                         "I am not a bot ✔️", data=f"check-bot-{userid}"
                                     )
                                 ]
-                            ],
-                        )
-                        chats = verified_user.find({})
-                        for c in chats:
+                            ] + longbutton, 
+                         )
+                         chats = verified_user.find({})
+                         for c in chats:
                             if event.chat_id == c["id"] and userid == c["user"]:
                                 update_previous_welcome(
                                     event.chat_id, current_message.id
                                 )
                                 return
-                        await tbot(
+                         await tbot(
                             EditBannedRequest(event.chat_id, userid, MUTE_RIGHTS)
-                        )
-                        update_previous_welcome(event.chat_id, current_message.id)
-                        return  # needy as we are in for loop
-                # for loop
-                current_message = await event.reply(
-                    current_saved_welcome_message.format(
+                         )
+                         update_previous_welcome(event.chat_id, current_message.id)
+                         return  # needy as we are in for loop                        
+                        except:
+                         current_message = await event.reply(
+                            filter.format(
+                                mention=mention,
+                                title=title,
+                                count=count,
+                                first=first,
+                                last=last,
+                                fullname=fullname,
+                                username=username,
+                                userid=userid,
+                            ),
+                            file=cws.media_file_id,
+                            buttons=[
+                                [
+                                    Button.inline(
+                                        "I am not a bot ✔️", data=f"check-bot-{userid}"
+                                    )
+                                ]
+                            ] + longbutton, 
+                         )
+                         chats = verified_user.find({})
+                         for c in chats:
+                            if event.chat_id == c["id"] and userid == c["user"]:
+                                update_previous_welcome(
+                                    event.chat_id, current_message.id
+                                )
+                                return
+                         await tbot(
+                            EditBannedRequest(event.chat_id, userid, MUTE_RIGHTS)
+                         )
+                         update_previous_welcome(event.chat_id, current_message.id)
+                         return  # needy as we are in for loop          
+                # for loop       
+                if "|" in current_saved_welcome_message:
+                            filter, options = current_saved_welcome_message.split("|")
+                else:
+                            filter = str(current_saved_welcome_message)
+                try:
+                            filter = filter.strip()
+                            button = options.strip()
+                            if "•" in button:
+                               mbutton = button.split("•")
+                               lbutton = []
+                            for i in mbutton:
+                              params = re.findall(r"\'(.*?)\'", i) or re.findall(
+                                r"\"(.*?)\"", i
+                              )                    
+                            lbutton.append(params)
+                            longbutton = []
+                            for c in lbutton:
+                              butto = [Button.url(*c)]
+                              longbutton.append(butto)                                     
+                            else:
+                              params = re.findall(r"\'(.*?)\'", button) or re.findall(
+                                r"\"(.*?)\"", button
+                              )
+                              butto = [Button.url(*params)]                                       
+                except BaseException:
+                              filter = filter.strip()
+                              butto = None           
+                try:
+                 current_message = await event.reply(
+                    filter.format(
                         mention=mention,
                         title=title,
                         count=count,
@@ -225,9 +427,26 @@ async def _(event):
                         userid=userid,
                     ),
                     file=cws.media_file_id,
-                )
-                update_previous_welcome(event.chat_id, current_message.id)
-
+                    buttons=longbutton, 
+                 )
+                 update_previous_welcome(event.chat_id, current_message.id)
+                except:
+                 current_message = await event.reply(
+                    filter.format(
+                        mention=mention,
+                        title=title,
+                        count=count,
+                        first=first,
+                        last=last,
+                        fullname=fullname,
+                        username=username,
+                        userid=userid,
+                    ),
+                    file=cws.media_file_id,
+                    buttons=longbutton, 
+                 )
+                 update_previous_welcome(event.chat_id, current_message.id)
+                
 
 @tbot.on(events.ChatAction())  # pylint:disable=E0602
 async def _(event):
