@@ -382,7 +382,7 @@ async def _(event):
                                         )
                                     ]
                                 ]
-                                + longbutton,
+                                + butto,
                             )
                             chats = verified_user.find({})
                             for c in chats:
@@ -453,7 +453,7 @@ async def _(event):
                             userid=userid,
                         ),
                         file=cws.media_file_id,
-                        buttons=longbutton,
+                        buttons=butto,
                     )
                     update_previous_welcome(event.chat_id, current_message.id)
 
