@@ -166,7 +166,7 @@ async def on_snip_save(event):
 
     if msg:
 
-        snip = {"type": TYPE_TEXT, "text": msg.message or ""}
+        snip = {"type": TYPE_TEXT, "text": msg.text or ""}
 
         if msg.media:
 
