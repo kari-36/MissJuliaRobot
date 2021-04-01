@@ -1266,20 +1266,22 @@ async def checkbot(event):
         )
 
 
-@register(pattern="^/setwelcome")  # pylint:disable=E0602
+@register(pattern="^/setwelcome$")  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
     if not await can_change_info(message=event):
         return
     msg = await event.get_reply_message()
+    if not msg:
+       return
     if msg and msg.media:
         tbot_api_file_id = pack_bot_file_id(msg.media)
-        add_welcome_setting(event.chat_id, msg.message, False, 0, tbot_api_file_id)
+        add_welcome_setting(event.chat_id, msg.text, False, 0, tbot_api_file_id)
         await event.reply("Welcome message saved. ")
     else:
-        input_str = event.text.split(None, 1)
-        add_welcome_setting(event.chat_id, input_str[1], False, 0, None)
+        input_str = msg.text
+        add_welcome_setting(event.chat_id, input_str, False, 0, None)
         await event.reply("Welcome message saved. ")
 
 
@@ -1312,20 +1314,22 @@ async def _(event):
         await event.reply("No welcome message found for this chat")
 
 
-@register(pattern="^/setgoodbye")  # pylint:disable=E0602
+@register(pattern="^/setgoodbye$")  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
     if not await can_change_info(message=event):
         return
     msg = await event.get_reply_message()
+    if not msg:
+       return
     if msg and msg.media:
         tbot_api_file_id = pack_bot_file_id(msg.media)
-        add_goodbye_setting(event.chat_id, msg.message, False, 0, tbot_api_file_id)
+        add_goodbye_setting(event.chat_id, msg.text, False, 0, tbot_api_file_id)
         await event.reply("Goodbye message saved. ")
     else:
-        input_str = event.text.split(None, 1)
-        add_goodbye_setting(event.chat_id, input_str[1], False, 0, None)
+        input_str = msg.text
+        add_goodbye_setting(event.chat_id, input_str, False, 0, None)
         await event.reply("Goodbye message saved. ")
 
 
@@ -1495,14 +1499,14 @@ file_helpo = file_help.replace("_", " ")
 
 __help__ = """
 **Welcome**
- - /setwelcome <welcome message> or <reply to a text>: Saves the message as a welcome note in the chat.
+ - /setwelcome <reply to a text>: Saves the message as a welcome note in the chat.
  - /checkwelcome: Check whether you have a welcome note in the chat.
  - /clearwelcome: Deletes the welcome note for the current chat.
  - /welcomecaptcha <on/off>: Mutes a user on joining and unmutes as he/she solves a image captcha.
  - /cleanwelcome <on/off>: Clean previous welcome message before welcoming a new user
 
 **Goodbye**
- - /setgoodbye <goodbye message> or <reply to a text>: Saves the message as a goodbye note in the chat.
+ - /setgoodbye <reply to a text>: Saves the message as a goodbye note in the chat.
  - /checkgoodbye: Check whether you have a goodbye note in the chat.
  - /cleargoodbye: Deletes the goodbye note for the current chat.
  - /cleangoodbye <on/off>: Clean previous goodbye message before farewelling a new user
