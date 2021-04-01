@@ -441,6 +441,7 @@ async def _(event):
                     )
                     update_previous_welcome(event.chat_id, current_message.id)
                 except:
+                    print (butto)
                     current_message = await event.reply(
                         filter.format(
                             mention=mention,
