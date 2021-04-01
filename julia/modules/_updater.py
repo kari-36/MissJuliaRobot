@@ -22,6 +22,7 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 from julia import OWNER_ID, tbot, UPSTREAM_REPO_URL
 
+
 async def gen_chlog(repo, diff):
     ch_log = ""
     d_form = "%d/%m/%y"
@@ -30,6 +31,7 @@ async def gen_chlog(repo, diff):
             f"•[{c.committed_datetime.strftime(d_form)}]: {c.summary} by <{c.author}>\n"
         )
     return ch_log
+
 
 @register(pattern="^/update(?: |$)(.*)")
 async def upstream(ups):
@@ -61,7 +63,7 @@ async def upstream(ups):
             return
         repo = Repo.init()
         origin = repo.create_remote("upstream", off_repo)
-        origin.fetch()        
+        origin.fetch()
         force_update = True
         repo.create_head("master", origin.refs.master)
         repo.heads.master.set_tracking_branch(origin.refs.master)
@@ -122,7 +124,7 @@ async def upstream(ups):
         ups_rem.pull(ac_br)
     except GitCommandError:
         repo.git.reset("--hard", "FETCH_HEAD")
-    
+
     await lol.edit("`Successfully Updated!\n" "restarting......`")
     args = [sys.executable, "-m", "julia"]
     execle(sys.executable, *args, environ)

@@ -135,29 +135,29 @@ async def yts_search(video_q):
             pass
         else:
             return
-    query = video_q.pattern_match.group(1)  
+    query = video_q.pattern_match.group(1)
     if not query.startswith("https://youtu.be/"):
-       await video_q.reply("Invalid youtube link")
-       return 
+        await video_q.reply("Invalid youtube link")
+        return
     r = requests.get(query)
     if "Video unavailable" in r.text:
-       await video_q.reply("Invalid youtube link")
-       return
-    videosSearch = VideosSearch(query, limit = 1)  
+        await video_q.reply("Invalid youtube link")
+        return
+    videosSearch = VideosSearch(query, limit=1)
     h = videosSearch.result()
-    if h['result'] == []:
-       await video_q.reply("Invalid youtube link")
-       return
-    title= (h['result'][0]['title'])
-    ptime= (h['result'][0]['publishedTime'])
-    dur= (h['result'][0]['duration'])
-    views= (h['result'][0]['viewCount']['short'])
-    des= (h['result'][0]['descriptionSnippet'][0]['text'])
-    chn= (h['result'][0]['channel']['name'])
-    chnl= (h['result'][0]['channel']['link'])
-    vlink= (h['result'][0]['link'])
-    g= (h['result'][0]['thumbnails'][0]['url'])
-    f=re.sub("\?.*$", "", g) 
+    if h["result"] == []:
+        await video_q.reply("Invalid youtube link")
+        return
+    title = h["result"][0]["title"]
+    ptime = h["result"][0]["publishedTime"]
+    dur = h["result"][0]["duration"]
+    views = h["result"][0]["viewCount"]["short"]
+    des = h["result"][0]["descriptionSnippet"][0]["text"]
+    chn = h["result"][0]["channel"]["name"]
+    chnl = h["result"][0]["channel"]["link"]
+    vlink = h["result"][0]["link"]
+    g = h["result"][0]["thumbnails"][0]["url"]
+    f = re.sub("\?.*$", "", g)
     final = f"""**Extracted information from youtube**:\n
 **Title**: `{title}`
 **Published Time**: `{ptime}`
@@ -168,8 +168,10 @@ async def yts_search(video_q):
 **Channel Link**: `{chnl}`
 **Video Link**: `{vlink}`
 """
-    await tbot.send_file(video_q.chat_id, f, reply_to=video_q.id, file_name="thumb.jpg", caption=final)
-    
+    await tbot.send_file(
+        video_q.chat_id, f, reply_to=video_q.id, file_name="thumb.jpg", caption=final
+    )
+
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
