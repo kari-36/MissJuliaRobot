@@ -148,11 +148,8 @@ async def _(event):
                             except BaseException:
                                 filter = filter.strip()
                                 butto = []
-                            print (longbutton)
-                            try:
-                                for i in longbutton:              
-                                   print (i[0])
-                                print (butto)
+                            
+                            try:                           
                                 current_message = await event.reply(
                                     filter.format(
                                         mention=mention,
