@@ -409,13 +409,14 @@ async def _(event):
                         params = re.findall(r"\'(.*?)\'", button) or re.findall(
                             r"\"(.*?)\"", button
                         )
-                        butto = [Button.url(*params)]
-                    print (params)
+                        butto = [Button.url(*params)]                    
                 except BaseException:
                     filter = filter.strip()
                     butto = None
                 if not longbutton:
                     longbutton=None
+                print (params)
+                #print (butto)
                 try:
                     current_message = await event.reply(
                         filter.format(
@@ -432,8 +433,7 @@ async def _(event):
                         buttons=longbutton,
                     )
                     update_previous_welcome(event.chat_id, current_message.id)
-                except:
-                    print (butto)
+                except:                    
                     current_message = await event.reply(
                         filter.format(
                             mention=mention,
