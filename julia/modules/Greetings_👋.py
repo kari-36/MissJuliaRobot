@@ -147,6 +147,9 @@ async def _(event):
                                 filter = filter.strip()
                                 butto = []
                             try:
+                                for i in longbutton:              
+                                   print (i[0])
+                                print (button)
                                 current_message = await event.reply(
                                     filter.format(
                                         mention=mention,
