@@ -14,7 +14,7 @@
 #    along with this program.  If not, see < https://www.gnu.org/licenses/agpl-3.0.en.html/ >.
 
 
-import os
+import os, re
 from telethon import events
 from telethon.utils import pack_bot_file_id
 from julia.events import register
