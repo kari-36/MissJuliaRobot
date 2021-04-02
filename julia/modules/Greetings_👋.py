@@ -149,7 +149,7 @@ async def _(event):
                             try:
                                 for i in longbutton:              
                                    print (i[0])
-                                print (button)
+                                print (butto)
                                 current_message = await event.reply(
                                     filter.format(
                                         mention=mention,
@@ -194,7 +194,7 @@ async def _(event):
                                     event.chat_id, current_message.id
                                 )
                                 return  # needy as we are in for loop
-                            except:
+                            except Exception as e:
                                 current_message = await event.reply(
                                     filter.format(
                                         mention=mention,
@@ -237,7 +237,8 @@ async def _(event):
                                 )
                                 update_previous_welcome(
                                     event.chat_id, current_message.id
-                                )
+                                )  
+                                print (e)
                                 return  # needy as we are in for loop
                     # for loop
                     if "|" in current_saved_welcome_message:
