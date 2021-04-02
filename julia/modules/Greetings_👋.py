@@ -79,6 +79,8 @@ async def can_change_info(message):
         isinstance(p, types.ChannelParticipantAdmin) and p.admin_rights.change_info
     )
 
+global longbutton
+global butto
 
 @tbot.on(events.ChatAction())  # pylint:disable=E0602
 async def _(event):
@@ -146,6 +148,7 @@ async def _(event):
                             except BaseException:
                                 filter = filter.strip()
                                 butto = []
+                            print (longbutton)
                             try:
                                 for i in longbutton:              
                                    print (i[0])
