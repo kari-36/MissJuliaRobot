@@ -25,6 +25,12 @@ from julia.modules.sql.welcome_sql import (
     rm_welcome_setting,
     update_previous_welcome,
 )
+from julia.modules.sql.welcome_sql import (
+    add_goodbye_setting,
+    get_current_goodbye_settings,
+    rm_goodbye_setting,
+    update_previous_goodbye,
+)
 import julia.modules.sql.rules_sql as sql
 from telethon import *
 from telethon.tl import *
