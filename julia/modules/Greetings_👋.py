@@ -84,11 +84,6 @@ async def can_change_info(message):
 async def _(event):
     cws = get_current_welcome_settings(event.chat_id)
     if cws:
-        # logger.info(event.stringify())
-        """user_added=False,
-        user_joined=True,
-        user_left=False,
-        user_kicked=False,"""
         if event.user_joined:
             if cws.should_clean_welcome:
                 try:
@@ -147,7 +142,7 @@ async def _(event):
                                 butto = [Button.url(*params)]
                         except BaseException:
                             filter = filter.strip()
-                            butto = None
+                            butto = []
                         try:
                             current_message = await event.reply(
                                 filter.format(
@@ -255,7 +250,7 @@ async def _(event):
                         butto = [Button.url(*params)]
                 except BaseException:
                     filter = filter.strip()
-                    butto = None
+                    butto = []
                 try:
                     current_message = await event.reply(
                         filter.format(
@@ -325,7 +320,7 @@ async def _(event):
                                 butto = [Button.url(*params)]
                         except BaseException:
                             filter = filter.strip()
-                            butto = None
+                            butto = []
                         try:
                             current_message = await event.reply(
                                 filter.format(
@@ -425,6 +420,8 @@ async def _(event):
                 except BaseException:
                     filter = filter.strip()
                     butto = None
+                if not longbutton:
+                    longbutton=None
                 try:
                     current_message = await event.reply(
                         filter.format(
