@@ -82,6 +82,7 @@ async def can_change_info(message):
 
 @tbot.on(events.ChatAction())  # pylint:disable=E0602
 async def _(event):
+ try:
     cws = get_current_welcome_settings(event.chat_id)
     if cws:
         if event.user_joined:
@@ -458,7 +459,8 @@ async def _(event):
                         buttons=butto,
                     )
                     update_previous_welcome(event.chat_id, current_message.id)
-
+ except Exception as e:
+        print (e)
 
 @tbot.on(events.ChatAction())  # pylint:disable=E0602
 async def _(event):
