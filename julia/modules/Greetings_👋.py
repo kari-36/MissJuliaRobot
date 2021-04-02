@@ -1319,6 +1319,7 @@ async def _(event):
         return
     msg = await event.get_reply_message()
     if not msg:
+        await event.reply("Reply to a message please.")
         return
     if msg and msg.media:
         tbot_api_file_id = pack_bot_file_id(msg.media)
@@ -1367,6 +1368,7 @@ async def _(event):
         return
     msg = await event.get_reply_message()
     if not msg:
+        await event.reply("Reply to a message please.")
         return
     if msg and msg.media:
         tbot_api_file_id = pack_bot_file_id(msg.media)
@@ -1558,6 +1560,9 @@ __help__ = """
 
 **Available variables for formatting greeting message:**
 `{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`
+
+You can also include buttons in the welcome message
+For eg: type /setwelcome in reply to `Welcome\nHere Are Some Cool Search Engines| [button('Google', 'google.com')] • [button('Yahoo', 'yahoo.com')] • [button('Bing', 'bing.com')]`
 
 **Note**: __You can't set new welcome/goodbye message before deleting the previous one.__
 """
