@@ -226,6 +226,7 @@ async def _(event):
                                 chats = verified_user.find({})
                                 for c in chats:
                                     if event.chat_id == c["id"] and userid == c["user"]:
+                                        print (e)
                                         update_previous_welcome(
                                             event.chat_id, current_message.id
                                         )
