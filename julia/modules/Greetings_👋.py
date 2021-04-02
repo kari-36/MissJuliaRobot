@@ -393,7 +393,6 @@ async def _(event):
                             update_previous_welcome(event.chat_id, current_message.id)
                             return  # needy as we are in for loop
                 # for loop
-                print (1)
                 if "|" in current_saved_welcome_message:
                     filter, options = current_saved_welcome_message.split("|")
                 else:
@@ -417,16 +416,12 @@ async def _(event):
                         params = re.findall(r"\'(.*?)\'", button) or re.findall(
                             r"\"(.*?)\"", button
                         )
-                        butto = [Button.url(*params)]      
-                    print (2)              
+                        butto = [Button.url(*params)]                                        
                 except BaseException:
                     filter = filter.strip()
-                    butto = None
-                    print (3)
+                    butto = None                    
                 if not longbutton:
                     longbutton=None
-                print (params)
-                #print (butto)
                 try:
                     current_message = await event.reply(
                         filter.format(
