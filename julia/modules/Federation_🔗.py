@@ -1990,10 +1990,8 @@ async def _(event):
     if event.is_private:
         return
     chat = event.chat_id
-    if chat == int(-1001158277850):
-        return
-    if chat == int(-1001342790946):
-        return
+    if chat in ANTI_FBAN:
+        return    
     user = event.sender_id
     fed_id = sql.get_fed_id(chat)
     fban, fbanreason, fbantime = sql.get_fban_user(fed_id, user)
@@ -2011,10 +2009,10 @@ async def join_ban(event):
     if event.is_private:
         return
     chat = event.chat_id
-    if chat == int(-1001158277850):
-        return
-    if chat == int(-1001342790946):
-        return
+    if chat in ANTI_FBAN:
+        return    
+    if not event.user_joined:
+       return
     user = event.user_id
     fed_id = sql.get_fed_id(chat)
     fban, fbanreason, fbantime = sql.get_fban_user(fed_id, user)
