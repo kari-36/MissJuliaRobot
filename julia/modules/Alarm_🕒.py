@@ -73,7 +73,7 @@ async def _(event):
         f"{time}", settings={"TIMEZONE": f"{zone}", "DATE_ORDER": "DMY"}
     )
     if ttime == None:
-        await event.reply("Please enter valid date and time.")
+        await event.reply("Please enter valid date and time and zone.")
         return
     time = ttime  # exchange
     present = dateparser.parse(
@@ -82,7 +82,7 @@ async def _(event):
     # print(time)
     # print(present)
     if not time > present:
-        await event.reply("Please enter valid date and time.")
+        await event.reply("Please enter valid date and time and zone.")
         return
     if not reason:
         reason = "No reason given"
