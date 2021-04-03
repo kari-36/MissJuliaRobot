@@ -136,6 +136,11 @@
       "value": "-1001158277850 -1001342790946",
       "required": false
     },
+    "ANTI_FBAN": {
+      "description": "List of chat ids that shouldn't enforce fban",
+      "value": "-1001158277850 -1001342790946",
+      "required": false
+    },
     "JULIASONG": {
       "description": "Channel link with @ where all songs should be dumped",
       "value": "",
