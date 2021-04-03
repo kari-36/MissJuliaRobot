@@ -76,6 +76,8 @@ if ENV:
     JULIAVSONG = os.environ.get("JULIAVSONG", None)
     ANTI_GBAN = {int(x) for x in os.environ.get("ANTI_GBAN", "").split()}
     ANTI_GBAN = list(ANTI_GBAN)
+    ANTI_FBAN = {int(x) for x in os.environ.get("ANTI_FBAN", "").split()}
+    ANTI_FBAN = list(ANTI_FBAN)
     TEMP_MAIL_KEY = os.environ.get("TEMP_MAIL_KEY", None)
 
     if CONSOLE_LOGGER_VERBOSE:
