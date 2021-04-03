@@ -79,8 +79,10 @@ async def can_change_info(message):
         isinstance(p, types.ChannelParticipantAdmin) and p.admin_rights.change_info
     )
 
+
 global longbutton
 global butto
+
 
 @tbot.on(events.ChatAction())  # pylint:disable=E0602
 async def _(event):
@@ -148,8 +150,8 @@ async def _(event):
                             except BaseException:
                                 filter = filter.strip()
                                 butto = []
-                            
-                            try:                           
+
+                            try:
                                 current_message = await event.reply(
                                     filter.format(
                                         mention=mention,
@@ -226,7 +228,7 @@ async def _(event):
                                 chats = verified_user.find({})
                                 for c in chats:
                                     if event.chat_id == c["id"] and userid == c["user"]:
-                                        print (e)
+                                        print(e)
                                         update_previous_welcome(
                                             event.chat_id, current_message.id
                                         )
@@ -238,8 +240,8 @@ async def _(event):
                                 )
                                 update_previous_welcome(
                                     event.chat_id, current_message.id
-                                )  
-                                print (e)
+                                )
+                                print(e)
                                 return  # needy as we are in for loop
                     # for loop
                     if "|" in current_saved_welcome_message:
