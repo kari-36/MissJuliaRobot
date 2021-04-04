@@ -1,5 +1,4 @@
-from telethon.tl.types import ChatBannedRights
-from apscheduler.schedulers.asyncio import AsyncIOScheduler 
+from telethon.tl.types import ChatBannedRights 
 from julia.events import register
 from julia import tbot
 import os
@@ -7,6 +6,7 @@ from telethon import *
 from pymongo import MongoClient
 from julia import MONGO_DB_URI, CMD_HELP
 import dateparser
+import datetime
 import os, asyncio
 
 client = MongoClient()
@@ -14,19 +14,8 @@ client = MongoClient(MONGO_DB_URI)
 db = client["missjuliarobot"]
 nightmod = db.nightmode
 
-async def can_change_info(message):
-    result = await tbot(
-        functions.channels.GetParticipantRequest(
-            channel=message.chat_id,
-            user_id=message.sender_id,
-        )
-    )
-    p = result.participant
-    return isinstance(p, types.ChannelParticipantCreator) or (
-        isinstance(p, types.ChannelParticipantAdmin) and p.admin_rights.change_info
-    )
 
-hehes = ChatBannedRights(
+closechat = ChatBannedRights(
     until_date=None,
     send_messages=True,
     send_media=True,
@@ -40,7 +29,7 @@ hehes = ChatBannedRights(
     change_info=True,
 )
 
-openhehe = ChatBannedRights(
+openchat = ChatBannedRights(
     until_date=None,
     send_messages=False,
     send_media=False,
@@ -53,6 +42,24 @@ openhehe = ChatBannedRights(
     pin_messages=True,
     change_info=True,
 )
+
+
+async def can_change_info(message):
+    result = await tbot(
+        functions.channels.GetParticipantRequest(
+            channel=message.chat_id,
+            user_id=message.sender_id,
+        )
+    )
+    p = result.participant
+    return isinstance(p, types.ChannelParticipantCreator) or (
+        isinstance(p, types.ChannelParticipantAdmin) and p.admin_rights.change_info
+    )
+    
+    
+def get_info(id, time, user):
+    return alarms.find_one({"id": id, "user": user})
+    
 
 @register(pattern="^/nightmode(?: |$)(.*)")
 async def profanity(event):
@@ -86,8 +93,8 @@ async def profanity(event):
                         "Nightmode is already activated for this chat."
                     )
                     return
-            nightmod.insert_one({"id": event.chat_id, "valid": True, "zone": "America/New_York", "time": "7"})
-            await event.reply("Nightmode turned on for this chat.")
+            nightmod.insert_one({"id": event.chat_id, "valid": False, "zone": "America/New_York", "ctime": None, "otime": None})
+            await event.reply("Nightmode turned on for this chat\n**Note:** It will not work unless you specify time and zone with `/setnightmode`")
     if input == "off":
         if event.is_group:
             chats = nightmod.find({})
@@ -100,3 +107,77 @@ async def profanity(event):
     if not input == "on" and not input == "off":
         await event.reply("I only understand by on or off")
         return
+
+@register(pattern="^/settimezone (.*)")
+async def _(event):
+    if event.fwd_from:
+        return   
+    quew = event.pattern_match.group(1)
+    if "|" in quew:
+        zone, ctime, otime = quew.split("|")
+    zone = zone.strip()
+    ctime = ctime.strip()
+    otime = otime.strip()
+    if len(ctime) != 11:
+        await event.reply("Please enter valid date and time.")
+        return
+    if len(otime) != 11:
+        await event.reply("Please enter valid date and time.")
+        return
+    if not zone and ctime and otime:
+        await event.reply("Missing some parameters.")
+        return
+    ttime = dateparser.parse(
+        "now", settings={"TIMEZONE": f"{zone}", "DATE_ORDER": "DMY"}
+    )
+    if ttime == None or otime == None or ctime == None:
+        await event.reply("Please enter valid date and time and zone.")
+        return    
+    cctime = dateparser.parse(
+        "{ctime}", settings={"TIMEZONE": f"{zone}", "DATE_ORDER": "DMY"} + timedelta (days=1)
+    )
+    ootime = dateparser.parse(
+        "{otime}", settings={"TIMEZONE": f"{zone}", "DATE_ORDER": "DMY"} + timedelta (days=1)
+    )
+    if cctime == ootime:
+        await event.reply("Chat opening and closing time cannot be same.")
+        return
+    if not ootime > cctime and not cctime < ootime:
+        await event.reply("Chat opening time must be greater than closing time")
+        return        
+    print (ttime)
+    print (cctime)
+    print (ootime)
+    chats = nightmod.find({})
+    for c in chats:
+        if (
+            event.chat_id == c["id"]
+            and c["valid"] == True
+        ):
+            to_check = get_info(
+                id=event.chat_id,
+            )
+            alarms.update_one(
+                {
+                    "_id": to_check["_id"],
+                    "id": to_check["id"],
+                    "zone": to_check["zone"],
+                    "ctime": to_check["ctime"],
+                    "otime": to_check["otime"],
+                },
+                {"$set": {"zone": zone, "ctime": ctime, "otime": otime}},
+            )
+            await event.reply(
+                "Nightmode already set.\nI am updating the zone, closing time and opening time with the new zone, closing time and opening time."
+            )
+            return
+    alarms.insert_one(
+        {
+            "id": event.chat_id,
+            "valid": True,
+            "zone": {zone},
+            "ctime": {cctime},
+            "otime": {ootime},
+        }
+    )
+    await event.reply("Nightmode set successfully !")
