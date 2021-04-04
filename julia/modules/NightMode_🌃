@@ -58,7 +58,7 @@ async def can_change_info(message):
     
     
 def get_info(id):
-    return alarms.find_one({"id": id})
+    return nightmod.find_one({"id": id})
     
 
 @register(pattern="^/nightmode(?: |$)(.*)")
