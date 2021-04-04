@@ -6,7 +6,7 @@ from telethon import *
 from pymongo import MongoClient
 from julia import MONGO_DB_URI, CMD_HELP
 import dateparser
-import datetime
+form datetime import timedelta
 import os, asyncio
 
 client = MongoClient()
@@ -57,8 +57,8 @@ async def can_change_info(message):
     )
     
     
-def get_info(id, time, user):
-    return alarms.find_one({"id": id, "user": user})
+def get_info(id):
+    return alarms.find_one({"id": id})
     
 
 @register(pattern="^/nightmode(?: |$)(.*)")
@@ -157,7 +157,7 @@ async def _(event):
             to_check = get_info(
                 id=event.chat_id,
             )
-            alarms.update_one(
+            nightmod.update_one(
                 {
                     "_id": to_check["_id"],
                     "id": to_check["id"],
@@ -165,19 +165,19 @@ async def _(event):
                     "ctime": to_check["ctime"],
                     "otime": to_check["otime"],
                 },
-                {"$set": {"zone": zone, "ctime": ctime, "otime": otime}},
+                {"$set": {"zone": zone, "ctime": cctime, "otime": ootime}},
             )
             await event.reply(
                 "Nightmode already set.\nI am updating the zone, closing time and opening time with the new zone, closing time and opening time."
             )
             return
-    alarms.insert_one(
+    nightmod.insert_one(
         {
             "id": event.chat_id,
             "valid": True,
-            "zone": {zone},
-            "ctime": {cctime},
-            "otime": {ootime},
+            "zone": zone,
+            "ctime": cctime,
+            "otime": ootime,
         }
     )
     await event.reply("Nightmode set successfully !")
