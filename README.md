@@ -1,4 +1,4 @@
-# MissJuliaRobot - A Telegram Bot Project
+# MissJuliaRobot 
 
 > ⭐️ Thanks to everyone who has starred the project, it means a lot !
 
