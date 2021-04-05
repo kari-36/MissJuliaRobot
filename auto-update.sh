@@ -20,6 +20,11 @@
 # So, I have made a easy solution for you.
 # If you are using this script in your project please don't remove these few lines, if you still somewhat respect me.
 
+
+# **Tip: you can run it in a different worker so that, it can be run independently of the main program
+# Thus you can switch it on/off wherever you want.
+
+
 # we first fetch the environment variables
 geturl=$SOURCE_URL
 authkey=$HEROKU_API_KEY
@@ -48,6 +53,9 @@ while true; do
           -H "Content-Type: application/json" \
           -H "Authorization: Bearer ${authkey}" \
           -H "Accept: application/vnd.heroku+json; version=3"
+
+          # show that a new version is being deployed
+          echo -e "\nFound outdated dependencies. Auto Updating ...\n"
 
           # Directly break the first while loop
           break 2
