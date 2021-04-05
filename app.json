@@ -96,6 +96,21 @@
       "value": "",
       "required": false
     },
+    "HEROKU_API_KEY": {
+      "description": "Required for auto-update.py, get it from https://dashboard.heroku.com/account",
+      "value": "",
+      "required": True
+    },
+    "HEROKU_APP_NAME": {
+      "description": "Name of the heroku application (without any changes)",
+      "value": "",
+      "required": True
+    },
+    "SOURCE_URL": {
+      "description": "Your github .tar archive link in the format https://api.github.com/repos/<owner>/<repo>/tarball/<branchname>",
+      "value": "",
+      "required": True
+    },
     "MONGO_DB_URI": {
       "description": "Required for database connections",
       "value": "",
