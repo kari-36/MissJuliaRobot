@@ -18,7 +18,7 @@
 # So you are tired of updating your pypi dependencies whenever they breaks.
 # For example dependencies like youtube_dl, howdoi etc. aren't stable and they need to be updated to function properly.
 # So, I have made a easy solution for you.
-# If you are using this script in your project please don't remove these few lines, if you still somewhat respect me.
+# If you are using this script in your project please don't remove these few lines, if you respect the creator.
 
 
 # **Tip: you can run it in a different worker so that, it can be run independently of the main program
