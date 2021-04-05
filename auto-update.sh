@@ -22,7 +22,7 @@
 
 
 # **Tip: you can run it in a different worker so that, it can be run independently of the main program
-# Thus you can switch it on/off wherever you want.
+# Thus you can switch it on/off whenever you want.
 
 
 # we first fetch the environment variables
