@@ -33,14 +33,14 @@ while true; do
  while IFS= read -r line; do
 
    # Fetch all the outdated dependencies
-   outdated=$(pip list --outdated)
+   outdated=$(pip list --disable-pip-version-check --outdated)
 
    # Here i am using some pattern check to strip out unstable dependencies
    # Logic: if dependencies has == then it's version is fixed, and if it has < then it cannot exceed its current version
    if ! [[ $line =~ == ]] && ! [[ $line =~ '<' ]]; then
       
       # Check if any of the striped dependencies is outdated
-      if [[ $line =~ $outdated ]]; then
+      if grep -q "$line" <<< "$outdated"; then
    
           # deploy a new version
           curl -n -X POST https://api.heroku.com/apps/$appname/builds \
