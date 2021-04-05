@@ -26,9 +26,9 @@
 
 
 # we first fetch the environment variables
-geturl=$SOURCE_URL
-authkey=$HEROKU_API_KEY
-appname=$HEROKU_APP_NAME
+geturl="${SOURCE_URL}"
+authkey="${HEROKU_API_KEY}"
+appname="${HEROKU_APP_NAME}"
 reqpath='requirements.txt' # change if necessary
 
 # while loop
