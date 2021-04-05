@@ -33,7 +33,7 @@ while true; do
  while IFS= read -r line; do
 
    # Fetch all the outdated dependencies
-   outdated=$(pip list --disable-pip-version-check --outdated)
+   outdated=$(pip --disable-pip-version-check list --outdated)
 
    # Here i am using some pattern check to strip out unstable dependencies
    # Logic: if dependencies has == then it's version is fixed, and if it has < then it cannot exceed its current version
