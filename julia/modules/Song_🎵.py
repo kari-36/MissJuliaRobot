@@ -36,7 +36,7 @@ from julia import tbot
 from telethon import types, events
 from telethon.tl import functions
 from julia.events import register
-from youtubesearchpython import SearchVideos
+from youtubesearchpython import VideosSearch, PlaylistsSearch
 from tswift import Song
 from pymongo import MongoClient
 from julia import MONGO_DB_URI
@@ -77,7 +77,7 @@ async def download_song(v_url):
         rkp = await v_url.reply("`Processing ...`")
         if not url:
             await rkp.edit("`Error \nusage song <song name>`")
-        search = SearchVideos(url, offset=1, mode="json", max_results=1)
+        search = PlaylistsSearch(url, offset=1, mode="json", max_results=1)
         test = search.result()
         p = json.loads(test)
         q = p.get("search_result")
@@ -201,7 +201,7 @@ async def download_video(v_url):
     rkp = await v_url.reply("`Processing ...`")
     if not url:
         await rkp.edit("`Error \nusage video <song name>`")
-    search = SearchVideos(url, offset=1, mode="json", max_results=1)
+    search = PlaylistsSearch(url, offset=1, mode="json", max_results=1)
     test = search.result()
     p = json.loads(test)
     q = p.get("search_result")
