@@ -43,10 +43,10 @@ while true; do
       if grep -q "$line" <<< "$outdated"; then
    
           # deploy a new version
-          curl -n -X POST https://api.heroku.com/apps/$appname/builds \
-          -d '{"source_blob": {"url": $geturl}}' \
+          curl -n -X POST "https://api.heroku.com/apps/${appname}/builds" \
+          -d "{\""source_blob\"": {\""url\"": \""${geturl}\""}}" \
           -H "Content-Type: application/json" \
-          -H "Authorization: Bearer $authkey" \
+          -H "Authorization: Bearer ${authkey}" \
           -H "Accept: application/vnd.heroku+json; version=3"
 
           # Directly break the first while loop
