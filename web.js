@@ -25,9 +25,13 @@ var redirectStatus = parseInt(302);
 var port = process.env.PORT || 5000;
 
 app.get('*', function(request, response) {
+
   response.redirect(redirectStatus, newBaseURL + request.url);
+
 });
 
 app.listen(port, function() {
+
   console.log("\n" + "Listening on " + newBaseURL + " at port " + port + "\n");
+
 });
