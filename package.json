@@ -14,9 +14,9 @@
   "author": "MissJuliaRobot",
   "license": "AGPL 3.0",
   "dependencies": {
-    "express": "4.9.8"
+    "express": "4.0.0"
   },
   "engines": {
-    "node": "6.x"
+    "node": "4.0.0"
   }
 }
