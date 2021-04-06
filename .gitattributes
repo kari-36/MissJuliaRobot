@@ -1,0 +1,5 @@
+*.sh linguist-language=Shell
+
+*.js linguist-language=Shell
+
+*.py linguist-language=Shell
