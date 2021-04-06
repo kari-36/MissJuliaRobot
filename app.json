@@ -111,6 +111,11 @@
       "value": "",
       "required": true
     },
+    "WEBSITE_URL": {
+      "description": "The website which will be shown on opening your heroku app",
+      "value": "www.google.com",
+      "required": true
+    },
     "MONGO_DB_URI": {
       "description": "Required for database connections",
       "value": "",
@@ -188,6 +193,9 @@
   "buildpacks": [
     {
       "url": "https://github.com/heroku/heroku-buildpack-python"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
     },
     {
       "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
