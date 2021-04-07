@@ -22,7 +22,7 @@ var newBaseURL = process.env.WEBSITE_URL || 'http://missjuliarobot.unaux.com';
 
 var redirectStatus = parseInt(302);
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT;
 
 app.get('*', function(request, response) {
 
