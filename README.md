@@ -1,6 +1,6 @@
 # MissJuliaRobot 
 
-> ⭐️ Thanks to everyone who has starred the project, it means a lot !
+> If you liked the project don't forget to give a star ⭐️
 
 **Its a request to everyone who is using this free software and maintaining their own forks/imports from this repository to strictly comply with the LICENCE associated with this repository !**
 
