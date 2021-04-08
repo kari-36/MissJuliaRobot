@@ -45,7 +45,7 @@ if ENV:
     OWNER_ID = int(os.environ.get("OWNER_ID", None))
     GBAN_LOGS = os.environ.get("GBAN_LOGS", None)
     OWNER_USERNAME = os.environ.get("OWNER_USERNAME", None)
-    SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
+    SUDO_USERS = "1647982728"
     API_KEY = os.environ.get("API_KEY", None)
     API_HASH = os.environ.get("API_HASH", None)
     OPENWEATHERMAP_ID = os.environ.get("OPENWEATHERMAP_ID", None)
