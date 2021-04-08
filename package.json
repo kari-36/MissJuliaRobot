@@ -1,5 +1,5 @@
 {
-  "name": "MissJuliaRobot",
+  "name": "Saygısızlar Yönetim Botu",
   "version": "1.0.0",
   "description": "A Simple Program For Port Forwarding",
   "main": "web.js",
@@ -11,7 +11,7 @@
     "heroku",
     "javascript"
   ],
-  "author": "MissJuliaRobot",
+  "author": "Saygısızlar Yönetim Botu",
   "license": "AGPL 3.0",
   "dependencies": {
     "express": "4.0.0"
