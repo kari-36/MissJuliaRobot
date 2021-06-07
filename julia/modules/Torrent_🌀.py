@@ -14,7 +14,7 @@
 #    along with this program.  If not, see < https://www.gnu.org/licenses/agpl-3.0.en.html >
 
 
-from julia import tbot, CMD_HELP
+from julia import client as tbot
 import os
 import requests, json
 from pymongo import MongoClient
@@ -24,8 +24,8 @@ from telethon.tl import functions
 from telethon.tl import types
 from telethon.tl.types import *
 
-from julia import *
-from julia.events import register
+from tg_bot import *
+from tg_bot.events import register
 
 client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
@@ -79,7 +79,7 @@ async def _(event):
     )
 
 
-@tbot.on(events.CallbackQuery(pattern=r"torrent(\-(.*))"))
+@tbot.on(events.NewMessage(pattern=r"torrent(\-(.*))"))
 async def paginate_news(event):
     approved_userss = approved_users.find({})
     for ch in approved_userss:
@@ -150,7 +150,7 @@ async def paginate_news(event):
     )
 
 
-@tbot.on(events.CallbackQuery(pattern=r"prevtorrent(\-(.*))"))
+@tbot.on(events.NewMessage(pattern=r"prevtorrent(\-(.*))"))
 async def paginate_prevtorrent(event):
     approved_userss = approved_users.find({})
     for ch in approved_userss:
@@ -224,7 +224,7 @@ async def paginate_prevtorrent(event):
     )
 
 
-@tbot.on(events.CallbackQuery(pattern=r"nexttorrent(\-(.*))"))
+@tbot.on(events.NewMessage(pattern=r"nexttorrent(\-(.*))"))
 async def paginate_nexttorrent(event):
     approved_userss = approved_users.find({})
     for ch in approved_userss:
@@ -298,7 +298,7 @@ async def paginate_nexttorrent(event):
     )
 
 
-@tbot.on(events.CallbackQuery(pattern=r"torrentstop(\-(.*))"))
+@tbot.on(events.NewMessage(pattern=r"torrentstop(\-(.*))"))
 async def torrentstop(event):
     approved_userss = approved_users.find({})
     for ch in approved_userss:
@@ -331,7 +331,7 @@ async def torrentstop(event):
     )
 
 
-@tbot.on(events.CallbackQuery(pattern=r"newtorrent(\-(.*))"))
+@tbot.on(events.NewMessage(pattern=r"newtorrent(\-(.*))"))
 async def paginate_nexttorrent(event):
     approved_userss = approved_users.find({})
     for ch in approved_userss:
@@ -412,4 +412,3 @@ __help__ = """
  - /torrent <item>: Returns torrent links for the item.
 """
 
-CMD_HELP.update({file_helpo: [file_helpo, __help__]})
